@@ -5,15 +5,16 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "Prestiti")
-public class Prestito {
+public class Prestiti {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "utente_id")
     private Utente utente;
-    @Enumerated(EnumType.STRING)
-    private TipologiaProdotto tipologiaProdotto;
+    @ManyToOne
+    @JoinColumn(name = "elemento_prestato_id")
+    private Prodotti elementoPrestato;
     private LocalDate dataInizioPrestito;
     private LocalDate dataRestituzionePrevista;
     private LocalDate dataRestituzioneEffettiva;
@@ -26,12 +27,12 @@ public class Prestito {
         this.utente = utente;
     }
 
-    public TipologiaProdotto getTipologiaProdotto() {
-        return tipologiaProdotto;
+    public Prodotti getElementoPrestato() {
+        return elementoPrestato;
     }
 
-    public void setTipologiaProdotto(TipologiaProdotto tipologiaProdotto) {
-        this.tipologiaProdotto = tipologiaProdotto;
+    public void setElementoPrestato(Prodotti elementoPrestato) {
+        this.elementoPrestato = elementoPrestato;
     }
 
     public LocalDate getDataInizioPrestito() {
@@ -58,9 +59,9 @@ public class Prestito {
         this.dataRestituzioneEffettiva = dataRestituzioneEffettiva;
     }
 
-    public Prestito(Utente utente, TipologiaProdotto tipologiaProdotto, LocalDate dataInizioPrestito, LocalDate dataRestituzionePrevista, LocalDate dataRestituzioneEffettiva) {
+    public Prestiti(Utente utente, Prodotti elementoPrestato, LocalDate dataInizioPrestito, LocalDate dataRestituzionePrevista, LocalDate dataRestituzioneEffettiva) {
         this.utente = utente;
-        this.tipologiaProdotto = tipologiaProdotto;
+        this.elementoPrestato = elementoPrestato;
         this.dataInizioPrestito = dataInizioPrestito;
         this.dataRestituzionePrevista = dataRestituzionePrevista;
         this.dataRestituzioneEffettiva = dataRestituzioneEffettiva;
