@@ -1,19 +1,22 @@
 package entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 @Entity
 @Table(name = "Utenti")
-public class Utente {
+public class Utenti {
 
     private String nome;
     private String cognome;
-    private LocalDate dataDiNascita;
+    private String dataDiNascita;
     @Id
-    private long numeroDiTessera;
+    private UUID numeroDiTessera;
 
     public String getNome() {
         return nome;
@@ -31,26 +34,28 @@ public class Utente {
         this.cognome = cognome;
     }
 
-    public LocalDate getDataDiNascita() {
+    public String getDataDiNascita() {
         return dataDiNascita;
     }
 
-    public void setDataDiNascita(LocalDate dataDiNascita) {
+    public void setDataDiNascita(String dataDiNascita) {
         this.dataDiNascita = dataDiNascita;
     }
 
-    public long getNumeroDiTessera() {
+    public UUID getNumeroDiTessera() {
         return numeroDiTessera;
     }
 
-    public void setNumeroDiTessera(long numeroDiTessera) {
+    public void setNumeroDiTessera(UUID numeroDiTessera) {
         this.numeroDiTessera = numeroDiTessera;
     }
 
-    public Utente(String nome, String cognome, LocalDate dataDiNascita, long numeroDiTessera) {
+    public Utenti(){}
+
+    public Utenti(String nome, String cognome, String dataDiNascita) {
         this.nome = nome;
         this.cognome = cognome;
         this.dataDiNascita = dataDiNascita;
-        this.numeroDiTessera = numeroDiTessera;
+        this.numeroDiTessera = UUID.randomUUID();
     }
 }

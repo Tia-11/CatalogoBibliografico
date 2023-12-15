@@ -1,10 +1,11 @@
 package entities;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Riviste")
+@DiscriminatorValue("rivista")
 public class Riviste extends Prodotti {
     private Periodicita periodicita;
 
@@ -15,6 +16,8 @@ public class Riviste extends Prodotti {
     public void setPeriodicita(Periodicita periodicita) {
         this.periodicita = periodicita;
     }
+
+    public Riviste(){}
 
     public Riviste(String titolo, int annoPubblicazione, int numeroPagine, Periodicita periodicita) {
         super(titolo, annoPubblicazione, numeroPagine);

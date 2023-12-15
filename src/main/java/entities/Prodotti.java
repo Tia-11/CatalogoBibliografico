@@ -5,7 +5,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "Prodotti")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_prodotto")
 public abstract class Prodotti {
     @Id
     private UUID codiceISBN;
@@ -36,6 +37,8 @@ public abstract class Prodotti {
     public void setNumeroPagine(int numeroPagine) {
         this.numeroPagine = numeroPagine;
     }
+
+    protected Prodotti(){}
 
     public Prodotti(String titolo, int annoPubblicazione, int numeroPagine) {
         this.codiceISBN = UUID.randomUUID();

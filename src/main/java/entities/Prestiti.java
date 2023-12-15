@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 @Table(name = "Prestiti")
@@ -9,9 +10,9 @@ public class Prestiti {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
+
     @JoinColumn(name = "utente_id")
-    private Utente utente;
+    private UUID utenteId;
     @ManyToOne
     @JoinColumn(name = "elemento_prestato_id")
     private Prodotti elementoPrestato;
@@ -19,12 +20,12 @@ public class Prestiti {
     private LocalDate dataRestituzionePrevista;
     private LocalDate dataRestituzioneEffettiva;
 
-    public Utente getUtente() {
-        return utente;
+    public UUID getUtenteId() {
+        return utenteId;
     }
 
-    public void setUtente(Utente utente) {
-        this.utente = utente;
+    public void setUtenteId(UUID utenteId) {
+        this.utenteId = utenteId;
     }
 
     public Prodotti getElementoPrestato() {
@@ -59,8 +60,10 @@ public class Prestiti {
         this.dataRestituzioneEffettiva = dataRestituzioneEffettiva;
     }
 
-    public Prestiti(Utente utente, Prodotti elementoPrestato, LocalDate dataInizioPrestito, LocalDate dataRestituzionePrevista, LocalDate dataRestituzioneEffettiva) {
-        this.utente = utente;
+    public Prestiti(){}
+
+    public Prestiti(UUID utenteId, Prodotti elementoPrestato, LocalDate dataInizioPrestito, LocalDate dataRestituzionePrevista, LocalDate dataRestituzioneEffettiva) {
+        this.utenteId = utenteId;
         this.elementoPrestato = elementoPrestato;
         this.dataInizioPrestito = dataInizioPrestito;
         this.dataRestituzionePrevista = dataRestituzionePrevista;
