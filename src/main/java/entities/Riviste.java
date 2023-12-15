@@ -1,9 +1,14 @@
 package entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
 
-public class Riviste {
-
+@Entity
+@Table(name = "Riviste")
+public class Riviste  {
+    @Id
     private UUID codiceISBN;
     private String titolo;
     private int annoPubblicazione;

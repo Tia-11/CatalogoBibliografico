@@ -1,11 +1,19 @@
 package entities;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "Prestiti")
 public class Prestito {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "utente_id")
     private Utente utente;
-    private Object elementoPrestato;
+    @Enumerated(EnumType.STRING)
+    private TipologiaProdotto tipologiaProdotto;
     private LocalDate dataInizioPrestito;
     private LocalDate dataRestituzionePrevista;
     private LocalDate dataRestituzioneEffettiva;
@@ -18,12 +26,12 @@ public class Prestito {
         this.utente = utente;
     }
 
-    public Object getElementoPrestato() {
-        return elementoPrestato;
+    public TipologiaProdotto getTipologiaProdotto() {
+        return tipologiaProdotto;
     }
 
-    public void setElementoPrestato(Object elementoPrestato) {
-        this.elementoPrestato = elementoPrestato;
+    public void setTipologiaProdotto(TipologiaProdotto tipologiaProdotto) {
+        this.tipologiaProdotto = tipologiaProdotto;
     }
 
     public LocalDate getDataInizioPrestito() {
@@ -50,11 +58,11 @@ public class Prestito {
         this.dataRestituzioneEffettiva = dataRestituzioneEffettiva;
     }
 
-    public Prestito(Utente utente, Object elementoPrestato, LocalDate dataInizioPrestito) {
+    public Prestito(Utente utente, TipologiaProdotto tipologiaProdotto, LocalDate dataInizioPrestito, LocalDate dataRestituzionePrevista, LocalDate dataRestituzioneEffettiva) {
         this.utente = utente;
-        this.elementoPrestato = elementoPrestato;
+        this.tipologiaProdotto = tipologiaProdotto;
         this.dataInizioPrestito = dataInizioPrestito;
-        this.dataRestituzionePrevista = dataInizioPrestito.plusDays(30);
+        this.dataRestituzionePrevista = dataRestituzionePrevista;
+        this.dataRestituzioneEffettiva = dataRestituzioneEffettiva;
     }
-
 }

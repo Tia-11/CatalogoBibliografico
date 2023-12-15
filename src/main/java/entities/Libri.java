@@ -1,9 +1,14 @@
 package entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
 
-public class Libri {
-
+@Entity
+@Table(name = "Libri")
+public class Libri  {
+    @Id
     private UUID codiceISBN;
     private String titolo;
     private int annoPubblicazione;

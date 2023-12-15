@@ -1,13 +1,18 @@
 package entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
-
+@Entity
+@Table(name = "Utenti")
 public class Utente {
 
     private String nome;
     private String cognome;
     private LocalDate dataDiNascita;
+    @Id
     private long numeroDiTessera;
 
     public String getNome() {
